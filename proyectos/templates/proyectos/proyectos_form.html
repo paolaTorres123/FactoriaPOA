@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block titulo %}
+    Nuevo Proyecto
+{% endblock titulo %}
+    
+
+{% block contenido %}
+    <h1>Nuevo proyecto</h1>
+    <form method="post" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        {{actividad_form.as_p}}
+        <button type="submit" class="btn btn-primary">Crear proyecto</button><br><br>
+    </form>
+{% endblock contenido %}

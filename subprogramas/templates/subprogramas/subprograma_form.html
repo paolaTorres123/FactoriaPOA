@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+    Crear cuenta de usuario
+{% endblock titulo %}
+
+{% block contenido %}
+    <h2 class="aex">{% if not subprograma %}
+            Nuevo
+        {% endif %} Subprograma</h2>
+    
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post" class="form-horizontal" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button id="btn_guardar" class="btn btn-success btn-sm">Guardar</button>
+        <a href="{% url "lista_subprograma" %}" class="btn btn-danger btn-sm">Cancelar</a>
+    </form>
+    
+{% endblock contenido %}
+
+{% block scripts %}
+    <script src="{% static "js/funciones.js" %}"></script>
+{% endblock scripts %}

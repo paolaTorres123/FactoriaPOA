@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>
+        Lista
+
+    </title>
+
+</head>
+<body class="animsition">
+    <h2 class="aex" >Proyectos</h2>
+    <div class="table-responsive table--no-card m-b-30">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <th>ID Proyecto</th>
+                <th>Nombre del proyecto</th>
+            </thead>
+            <tbody>
+                {% for proyecto in object_list%}
+                    <tr>
+                        <td>{{proyecto.id}}</td>
+                        <td>{{proyecto.nombre_proyecto}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

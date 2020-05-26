@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>
+        Lista
+
+    </title>
+
+</head>
+<body class="animsition">
+    <h2 class="aex" >Subprogramas</h2>
+    <div class="table-responsive table--no-card m-b-30">
+        <table class="table table-borderless table-striped table-earning">
+            <thead class="thead-dark">
+                <th>ID Subprograma</th>
+                <th>Nombre</th>
+                <th>Presupuesto</th>
+                <th>Estatus</th>
+            </thead>
+            <tbody>
+                {% for subprograma in object_list %}
+                    <tr>
+                        <td>{{subprograma.id}}</td>
+                        <td>{{subprograma.nombre}}</td>
+                        <td>${{subprograma.presupuesto}}</td>
+                        <td>{{subprograma.estatus_valor}}</td>
+                        <td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

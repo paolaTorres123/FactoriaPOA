@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+    Crear cuenta de usuario
+{% endblock titulo %}
+
+{% block contenido %}
+    <h2 class="aex">Crear cuenta de usuario</h2>
+    
+    {% if form.errors or admin_form.errors %}
+        <div class="alert alert-warning">
+            {{form.errors}}
+            {{admin_form.errors}}
+        </div>
+    {% endif %}
+    
+    <form method="post" enctype="multipart/form-data" class="form-horizontal">
+        {% csrf_token %}
+        {{form.as_p}}
+        {{administrativo_form.as_p}}
+        <button type="submit" class="btn btn-success">Crear cuenta</button>
+    </form>
+
+{% endblock contenido %}
+
+{% block scripts %}
+    <script src="{% static "js/funciones.js" %}"></script>
+{% endblock scripts %}

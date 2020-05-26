@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+    Crear cuenta de usuario
+{% endblock titulo %}
+
+{% block contenido %}
+    <h2 class="aex">Subprograma: <strong id="id_nombre">{{ object.nombre }}</strong></h2>
+
+    <form method="post" class="form-horizontal" enctype="multipart/form-data">
+        <p><strong>Programa: </strong><label id="id_programa"> {{ object.programa }}</label></p>
+        <p><strong>Presupuesto: $</strong><label id="id_presupuesto">{{ object.presupuesto }}</label></p>
+        <p><strong>Responsable: </strong><label id="id_responsable"> {{ object.responsable }}</label></p>
+        <p><strong>Estatus: </strong><label id="id_estatus"> {{ object.estatus_valor}}</label></p>
+        {% csrf_token %}
+        <a href="{% url "lista_subprograma" %}" class="btn btn-success btn-sm">Regresar</a>
+        <a href="{% url "editar_subprograma" subprograma.id %}" class="btn btn-secondary btn-sm">Editar</a>
+    </form>
+
+{% endblock contenido %}
+
+{% block scripts %}
+    <script src="{% static "js/funciones.js" %}"></script>
+{% endblock scripts %}

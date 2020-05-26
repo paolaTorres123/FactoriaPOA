@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+    Generar Reportes
+{% endblock titulo %}
+
+{% block contenido %}
+    <h2 class="aex">Generar Reporte</h2>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p id="mensaje">{{ message }}</p>
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="form-horizontal">
+        {% csrf_token %}
+        <p>Información del reporte:
+            <SELECT id="miSelect" SIZE=1 >
+                <option selected>-----</option>
+                {% for opcion in modulos %}
+                    <OPTION value={{opcion.url_name}}>{{opcion.tipo_modulo}}</OPTION>
+                {% endfor %}
+            </SELECT>
+            <a id="btn_genera_pdf"  href="#" class="btn btn-primary btn-sm" onclick="dimePropiedades()">Generar PDF</a>
+        </p>
+    </div>
+    
+{% endblock contenido %}
+
+{% block scripts %}
+    <script src="{% static "js/funciones.js" %}"></script>
+    <script type="text/javascript">
+        function dimePropiedades(){
+            url_name=document.getElementById("miSelect").value
+            lista_err=document.getElementById("lista_errores");
+            if (url_name !== "-----") {
+                location.href = url_name
+            } else {
+            }
+        }
+    </script>
+{% endblock scripts %}
+

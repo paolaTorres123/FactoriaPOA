@@ -1,0 +1,67 @@
+
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Lista de Programas
+{% endblock titulo %}
+    
+{% block contenido %}
+
+    <h2 class="aex" >Programas</h2>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p id="mensaje">{{ message }}</p>
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div class="table-responsive table--no-card m-b-30">
+        <table class="table table-borderless table-striped table-earning">
+            <thead class="thead-dark">
+                <th>ID Programa</th>
+                <th>Nombre del Programa</th>
+                <th>Año de Ejercicio Fiscal</th>
+                <th>Recurso Asignado</th>
+                <th>Fuente</th>
+                <th>Status</th>
+                <th>Opciones</th>
+            </thead>
+            <tbody>
+                {% for programa in object_list %}
+                    <tr>
+                        <td>{{programa.id}}</td>
+                        <td>{{programa.nombre}}</td>
+                        <td>{{programa.anio_ejercicio_fiscal}}</td>
+                        <td>{{programa.recurso_asignado}}</td>
+                        <td>{{programa.fuente}}</td>
+                        <td>{{programa.status}}</td>
+                        <td>
+                            {% if programa.status == "ACT" or programa.status == "Act"%}
+                            
+                            <a href="{% url "desactivar_programa" programa.id %}" class="btn btn-danger btn-sm">Desactivar</a>
+                            
+                            {% else %}
+                            
+                            <a href="{% url "reactivar_programa" programa.id %}" class="btn btn-primary btn-sm">Reactivar</a>
+                            
+                            {% endif %}
+                            <!--<a href="{% url "desactivar_programa" programa.id %}" class="btn btn-danger btn-sm">Desactivar</a>-->
+                            <a href="{% url "editar_programa" programa.id %}" class="btn btn-success btn-sm">Editar</a>
+                        </td>
+                    </tr>
+                {% endfor %} 
+            </tbody>
+        </table>
+    </div>
+
+{% endblock contenido %}
+

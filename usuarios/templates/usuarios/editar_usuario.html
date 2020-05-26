@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+    Editar cuenta de usuario
+{% endblock titulo %}
+
+{% block contenido %}
+    <h2>Editar cuenta de usuario</h2>
+    
+    {% if form.errors or admin_form.errors %}
+        <div class="alert alert-warning">
+            {{form.errors}}
+            {{admin_form.errors}}
+        </div>
+    {% endif %}
+    
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p id="mensaje">{{ message }}</p>
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        {{admin_form.as_p}}
+        <button id="btnGuardarCambios" type="submit" class="btn btn-primary">Guardar cambios</button>
+    </form>
+
+{% endblock contenido %}
+
+{% block scripts %}
+    <script src="{% static "js/funciones.js" %}"></script>
+{% endblock scripts %}

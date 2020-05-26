@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+    Actualizar Proyecto
+{% endblock titulo %}
+    
+{% block contenido %}
+
+    <h2>Actualizar Proyecto</h2>
+
+    {% if form.errors %}
+        <div class="alert alert-warning">
+            {{form.errors}}
+        </div>
+    {% endif %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p id="mensaje">{{message}}</p>
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{proyecto_form.as_p}}
+    <button id="btnCambios" type="submit" class="btn btn-primary">Guardar cambios</button>
+</form>
+{% endblock contenido %}
+
+{% block scripts %}
+  <script src="{% static "js/funciones.js" %}></script>
+{% endblock scripts %}

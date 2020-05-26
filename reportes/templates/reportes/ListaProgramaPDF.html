@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>
+        Lista
+    </title>
+
+</head>
+<body class="animsition">
+    <h2 class="aex" >Programas</h2>
+    <div class="table-responsive table--no-card m-b-30">
+        <table class="table table-borderless table-striped table-earning">
+            <thead class="thead-dark">
+                <th>ID Programa</th>
+                <th>Nombre del Programa</th>
+                <th>Año de Ejercicio Fiscal</th>
+                <th>Recurso Asignado</th>
+                <th>Fuente</th>
+            </thead>
+            <tbody>
+                {% for programa in object_list %}
+                    <tr>
+                        <td>{{programa.id}}</td>
+                        <td>{{programa.nombre}}</td>
+                        <td>{{programa.anio_ejercicio_fiscal}}</td>
+                        <td>{{programa.recurso_asignado}}</td>
+                        <td>{{programa.fuente}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+    Editar Programa
+{% endblock titulo %}
+
+{% block contenido %}
+    <h2 class="aex">Editar Programa</h2>
+    
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p id="mensaje">{{message}}</p>
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+    {% if form.errors or partida_form_c.errors or programa_form.errors or metas_esperadas_form.errors or metas_reales_form.errors %}
+        <div class="alert alert-warning">
+            {{forms.errors}}
+            {{programa_form.errors}}
+            {{partida_form_c.errors}}
+            {{metas_esperadas_form.errors}}
+            {{metas_reales_form.errors}}
+        </div>
+    {% endif %}
+
+    
+    <form method="post" class="form-horizontal">
+        {% csrf_token %}
+        {{form.as_p}}
+        {{programa_form.as_p}}
+        {{partida_form_c.as_p}}
+        {{metas_esperadas_form.as_p}}
+        {{metas_reales_form.as_p}}
+        <button type="submit" class="btn btn-primary">Guardar Programa</button>
+    </form>
+
+{% endblock contenido %}
+
+{% block scripts %}
+    <script src="{% static "js/funciones.js" %}"></script>
+{% endblock scripts %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block titulo %}
+   Proyectos
+{% endblock titulo %}
+    
+
+{% block contenido %}
+    <h2 class="aex">Lista Proyectos</h2>
+    <!-- <a href="{% url "nuevo_proyecto" %}" class="btn btn-primary">Agregar Proyecto</a> -->
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <th>ID Proyecto</th>
+            <th>Nombre del proyecto</th>
+            <th>Ver Actividad</th>
+            <th>Editar</th>
+            <th>Desactivar/Reactivar</th>
+        </thead>
+        <tbody>
+            
+            {% for proyecto in object_list%}
+                <tr>
+                    <td>{{proyecto.id}}</td>
+                    <td>{{proyecto.nombre_proyecto}}</td>
+                    <td>
+                            <a href="{% url "lista_actividad" proyecto.id %}" class="btn btn-info btn-sm">Ver lista</a>
+                            
+                    </td>
+                    <td>
+                            <a href="{% url "editar_proyectos" proyecto.id %}" class="btn btn-warning btn-sm">Editar</a>
+                            
+                    </td>
+                    <td>
+                        
+                        {% if proyecto.activo %}
+                            <a href="{% url "desactivar_proyectos" proyecto.id %}" class="btn btn-danger btn-sm">Desactivar</a>
+                            {% else %}
+                            <a href="{% url "activar_proyectos" proyecto.id %}" class="btn btn-success btn-sm">Activar</a>
+                        {% endif %}
+                            
+                            
+                            
+                    </td>
+                </tr>
+            {% endfor %}
+                
+        </tbody>
+    </table>
+{% endblock contenido %}

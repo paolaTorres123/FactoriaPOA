@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Lista de Subprogramas
+{% endblock titulo %}
+    
+{% block contenido %}
+
+    <h2 class="aex" >Subprogramas</h2>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p id="mensaje">{{ message }}</p>
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="table-responsive table--no-card m-b-30">
+        <table class="table table-borderless table-striped table-earning">
+            <thead class="thead-dark">
+                <th>ID Subprograma</th>
+                <th>Nombre</th>
+                <th>Presupuesto</th>
+                <th>Estatus</th>
+                <th>Opciones</th>
+            </thead>
+            <tbody>
+                {% for subprograma in object_list %}
+                    <tr>
+                        <td>{{subprograma.id}}</td>
+                        <td>{{subprograma.nombre}}</td>
+                        <td>${{subprograma.presupuesto}}</td>
+                        <td>{{subprograma.estatus_valor}}</td>
+                        <td>
+                            <a id="btn_detalles"  href="{% url "ver_subprograma" subprograma.id %}" class="btn btn-primary btn-sm">Ver</a>
+                            <a id="btn_editar" href="{% url "editar_subprograma" subprograma.id %}" class="btn btn-success btn-sm">Editar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <!--<div class="icon">
+                <a  class="btn btn-success btn-group-sm"href="{% url "nuevo_subprograma" %}"><i class="zmdi zmdi-plus" ></i> Nuevo</a>
+            </div>-->
+        </table>
+
+    </div>
+
+{% endblock contenido %}

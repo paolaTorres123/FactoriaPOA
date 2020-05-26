@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    Usuarios
+{% endblock titulo %}
+    
+{% block contenido %}
+
+    <h2 class="aex" >Usuarios</h2>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <p id="mensaje">{{ message }}</p>
+                </div>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="table-responsive table--no-card m-b-30">
+        <table class="table table-borderless table-striped table-earning">
+            <thead class="thead-dark">
+                <th>Nombre</th>
+                <th>Nombre de usuario</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th>Desactivar / Reactivar</th>
+            </thead>
+            <tbody>
+                {% for administrativo in object_list %}
+                    <tr>
+                        <td>{{administrativo.admin.nombre}} {{administrativo.admin.primer_apellido}}</td>
+                        <td>{{administrativo.usuario.username}}</td>
+                        <td>{{administrativo.usuario.email}}</td>
+                        <td>{{administrativo.admin.telefono}}</td>
+                        {% if administrativo.usuario.is_active %}
+                        <td>
+                            <a href="{% url "desactivar_usuario" administrativo.usuario.id %}" class="btn btn-danger btn-sm">Desactivar</a>
+                        </td>
+                        {% else %}
+                        <td>
+                            <a href="{% url "reactivar_usuario" administrativo.usuario.id %}" class="btn btn-success btn-sm">Reactivar</a>
+                        </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %} 
+            </tbody>
+        </table>
+    </div>
+
+{% endblock contenido %}
